@@ -1,0 +1,29 @@
+.header-tabs{
+    display: flex;
+    flex-basis: 50%;
+    gap: 50px;
+    justify-content:center;
+}
+
+.titles{
+    padding: 5px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    gap: 5px;
+}
+
+.header{
+    display: flex;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+.hotelName{
+    font-weight: 600;
+    flex-basis: 30%;
+    font-size:larger;
+    color: white;
+}
