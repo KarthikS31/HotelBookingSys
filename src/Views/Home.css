@@ -2,7 +2,21 @@
     position: relative;
     height: 100vh;
     overflow: hidden;
-    top:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.home > h1{
+    color: white;
+     text-shadow: 0 2px 6px black;
+    text-decoration:dashed;
+}
+
+.home >h1::after{
+  content: "THE BEST.";
+  color: gold;
 }
 .home::before {
   content: "";
@@ -11,3 +25,49 @@
   background: url("../assets/images/hotelMainImg.jpg") center top / cover no-repeat;
   z-index: -1;
 }
+
+.filterComponent{
+  position: relative;
+  top: 10%;
+  display: flex;
+  background-color: white;
+  border-radius: 30px;
+  padding: 15px 20px;
+  width: fit-content;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  box-shadow: 2px 2px 6px grey;
+}
+.filterComponent > input{
+  border-color: transparent;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+  margin: 2px;
+}
+.filterComponent > select{
+  border-color: transparent;
+  min-width: 8rem;
+  text-align: center;
+  width: max-content;
+  border-radius: 8px;
+  outline: none;
+  
+}
+
+.filterComponent>.divider {
+  width: 2px;
+  height: 26px;
+  background-color: grey;
+  flex-shrink: 0;
+
+  
+}
+@media(max-width:500px) {
+    .filterComponent> .divider{
+      background-color: transparent;
+    }
+    .filterComponent {
+      background-color: transparent;
+    }
+  }

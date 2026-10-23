@@ -1,4 +1,6 @@
 .main-container{
     position: relative;
 }
-
+#rooms, #bookings{
+    height: 100vh;
+}

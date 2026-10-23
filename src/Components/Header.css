@@ -2,7 +2,9 @@
     display: flex;
     flex-basis: 50%;
     gap: 50px;
-    justify-content:center;
+    justify-content:center;  
+    flex-wrap: nowrap;
+    white-space:nowrap;
 }
 
 .titles{
@@ -16,14 +18,33 @@
 .header{
     display: flex;
     padding: 10px;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 10;
+    background-color: rgb(245 245 245 / 20%);
+
 }
 .hotelName{
     font-weight: 600;
     flex-basis: 30%;
     font-size:larger;
     color: white;
+}
+
+.user{
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    align-self: center;
+    right: 20px;
+}
+
+.user > button{
+    border-radius: 8px;
+    background-color: goldenrod;
+    padding: 6px 8px;
+    border: none;
+    color: white;
+    font-weight: 600;
 }
