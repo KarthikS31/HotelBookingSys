@@ -1,73 +1,176 @@
-.home{
+.home {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
-.home > h1{
+.home > h1 {
     color: white;
-     text-shadow: 0 2px 6px black;
-    text-decoration:dashed;
+    text-shadow: 0 2px 6px black;
+    text-align: center;
 }
 
-.home >h1::after{
-  content: "THE BEST.";
-  color: gold;
+.home > h1::after {
+    content: "THE BEST.";
+    color: gold;
+    margin-left: 10px;
 }
+
 .home::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("../assets/images/hotelMainImg.jpg") center top / cover no-repeat;
-  z-index: -1;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../assets/images/hotelMainImg.jpg") center top / cover no-repeat;
+    z-index: -1;
 }
 
-.filterComponent{
-  position: relative;
-  top: 10%;
-  display: flex;
-  background-color: white;
-  border-radius: 30px;
-  padding: 15px 20px;
-  width: fit-content;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  box-shadow: 2px 2px 6px grey;
-}
-.filterComponent > input{
-  border-color: transparent;
-  border-radius: 8px;
-  outline: none;
-  text-align: center;
-  margin: 2px;
-}
-.filterComponent > select{
-  border-color: transparent;
-  min-width: 8rem;
-  text-align: center;
-  width: max-content;
-  border-radius: 8px;
-  outline: none;
-  
+/* Filter container */
+.filterComponent {
+    position: relative;
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-end;
+    gap: 18px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: fit-content;
+    max-width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
 }
 
-.filterComponent>.divider {
-  width: 2px;
-  height: 26px;
-  background-color: grey;
-  flex-shrink: 0;
-
-  
+/* Labels and inputs */
+.filterField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 140px;
+    flex: 1;
 }
-@media(max-width:500px) {
-    .filterComponent> .divider{
-      background-color: transparent;
-    }
+
+.filterField label {
+    color: #374151;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filterField .input {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    background-color: white;
+    color: #111827;
+    font: inherit;
+}
+
+.filterField .input:focus {
+    border-color: #9ca3af;
+    box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.2);
+}
+
+/* Dividers */
+.filterComponent > .divider {
+    width: 1px;
+    height: 40px;
+    background-color: #d1d5db;
+    flex-shrink: 0;
+    margin-bottom: 4px;
+}
+
+/* Search icon button */
+.searchButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 42px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 10px;
+    background-color: #111827;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.searchButton:hover {
+    background-color: #374151;
+    transform: translateY(-2px);
+}
+
+.searchButton:focus-visible {
+    outline: 2px solid #6b7280;
+    outline-offset: 3px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
     .filterComponent {
-      background-color: transparent;
+        width: 100%;
+        max-width: 650px;
+        gap: 16px;
     }
-  }
+
+    .filterField {
+        flex: 1 1 40%;
+    }
+
+    .filterComponent > .divider {
+        display: none;
+    }
+
+    .searchButton {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+    .home {
+        padding: 20px 14px;
+    }
+
+    .home > h1 {
+        font-size: 26px;
+    }
+
+    .home > h1::after {
+        display: block;
+        margin: 8px 0 0;
+    }
+
+    .filterComponent {
+        width: 100%;
+        margin-top: 30px;
+        padding: 18px;
+        gap: 16px;
+        border-radius: 16px;
+    }
+
+    .filterField {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .searchButton {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}

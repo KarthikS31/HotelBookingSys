@@ -1,0 +1,241 @@
+
+.bookings-page {
+    max-width: 1100px;
+    min-height: 70vh;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    color: #222;
+}
+
+.bookings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.bookings-heading h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+
+.bookings-heading p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.booking-count {
+    background: #f0f4ff;
+    color: #3157b7;
+    padding: 9px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.booking-card {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.booking-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.booking-label {
+    color: #888;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.booking-card-top h2 {
+    font-size: 21px;
+    margin: 7px 0 4px;
+}
+
+.room-type {
+    color: #777;
+    font-size: 13px;
+    margin: 0;
+}
+
+.edit-booking {
+    width: 38px;
+    height: 38px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    color: #555;
+    cursor: pointer;
+}
+
+.edit-booking:hover {
+    background: #f3f5f9;
+}
+
+.booking-card-content {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.booking-image {
+    width: 200px;
+    min-height: 150px;
+    max-height: 190px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.booking-details {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 18px;
+    align-content: center;
+}
+
+.booking-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.booking-detail > i {
+    color: #6478b9;
+    font-size: 18px;
+}
+
+.booking-detail div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.booking-detail span {
+    color: #888;
+    font-size: 12px;
+}
+
+.booking-detail strong {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.booking-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    margin-top: 22px;
+    padding-top: 18px;
+}
+
+.booking-status {
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.booking-status.confirmed,
+.booking-status.checked-in {
+    background: #e6f7ed;
+    color: #16834a;
+}
+
+.booking-status.completed {
+    background: #edf0f5;
+    color: #586174;
+}
+
+.booking-status.cancelled {
+    background: #fdeaea;
+    color: #c42f35;
+}
+
+.booking-status.unknown {
+    background: #f1f1f1;
+    color: #666;
+}
+
+.booking-room-price {
+    color: #666;
+    font-size: 13px;
+}
+
+.no-bookings {
+    text-align: center;
+    padding: 70px 20px;
+    background: white;
+    border: 1px dashed #ddd;
+    border-radius: 14px;
+}
+
+.no-bookings > i {
+    font-size: 38px;
+    color: #999;
+}
+
+.no-bookings h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.no-bookings p {
+    color: #888;
+    font-size: 14px;
+}
+
+@media (max-width: 650px) {
+    .bookings-page {
+        margin: 20px auto;
+        padding: 14px;
+    }
+
+    .bookings-heading h1 {
+        font-size: 23px;
+    }
+
+    .booking-card {
+        padding: 18px;
+    }
+
+    .booking-card-content {
+        flex-direction: column;
+    }
+
+    .booking-image {
+        width: 100%;
+        height: 180px;
+    }
+
+    .booking-details {
+        gap: 20px 10px;
+    }
+
+    .booking-detail {
+        gap: 8px;
+    }
+
+    .booking-card-footer {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+}

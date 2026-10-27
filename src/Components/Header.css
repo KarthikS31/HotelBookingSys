@@ -15,6 +15,12 @@
     gap: 5px;
 }
 
+.title{
+    text-decoration: inherit;
+    font: inherit;
+    color: inherit;
+}
+
 .header{
     display: flex;
     padding: 10px;
@@ -22,7 +28,7 @@
     top: 0;
     width: 100%;
     z-index: 10;
-    background-color: rgb(245 245 245 / 20%);
+    background-color: rgba(0, 0, 0, 0.7);
 
 }
 .hotelName{
