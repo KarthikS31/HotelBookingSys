@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setRoomFilters } from "../Reducers/HomeReducer";
 import "primeicons/primeicons.css";
 import "./Home.css";
+import { fetchAllRooms } from "../Actions/RoomsAction";
 
 function Home() {
     return (
@@ -15,6 +16,10 @@ function Home() {
 
 function FilterComponent() {
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchAllRooms());
+    }, [])
 
     const roomtype = {
         "SMALL": "Standard",
@@ -36,7 +41,6 @@ function FilterComponent() {
     const [selectedType, setSelectedType] = useState("SMALL");
 
     const handleSearch = () => {
-        console.log(selectedType)
         dispatch(setRoomFilters({
             guests: Number(guests),
             checkin,

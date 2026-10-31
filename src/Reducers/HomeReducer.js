@@ -14,10 +14,19 @@ const homeSlice = createSlice({
     reducers: {
         setRoomFilters: (state, action) => {
             state.filters = action.payload;
+        },
+        clearRoomFilters: (state) => {
+            state.filters = {
+                guests: 1,
+                checkin: "",
+                checkout: "",
+                roomType: ""
+            }
         }
+
     }
 })
 
 export default homeSlice.reducer;
 
-export let {setRoomFilters}= homeSlice.actions;
+export let { setRoomFilters, clearRoomFilters } = homeSlice.actions;

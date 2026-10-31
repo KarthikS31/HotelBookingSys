@@ -1,21 +1,41 @@
 
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "primeicons/primeicons.css";
 import "./Bookings.css";
+import { getBookingByUserId } from "../Actions/BookingsAction";
 
 function Bookings() {
+    const dispatch = useDispatch();
     const bookingData = useSelector(
         (state) => state.bookings?.data ?? []
     );
 
-    const userId = 1;
+    const user = useSelector((state) => state.auth.user);
+    const userId = user?.id;
+    const [sortOrder, setSortOrder] = useState("newest");
+    const [statusFilter, setStatusFilter] = useState("ALL");
 
-    const filteredBookings = Array.isArray(bookingData)
-        ? bookingData.filter(
-              (booking) => booking.user?.id === userId
-          )
-        : [];
+    useEffect(() => {
+        if (userId != null) {
+            dispatch(getBookingByUserId({userId}));
+        }
+    }, [userId, dispatch]);
+
+    const filteredBookings = bookingData
+        .filter(booking =>
+            (booking.users?.id === userId) &&
+            (statusFilter === "ALL" ||
+                booking.bookingStatus === statusFilter)
+        )
+        .sort((a, b) => {
+            const dateA = new Date(a.check_in);
+            const dateB = new Date(b.check_in);
+
+            return sortOrder === "newest"
+                ? dateB - dateA
+                : dateA - dateB;
+        });
 
     const formatDate = (date) => {
         if (!date) return "-";
@@ -39,7 +59,32 @@ function Bookings() {
                     {filteredBookings.length} Bookings
                 </span>
             </div>
+            <div className="booking-filters">
+                <div className="filter-group">
+                    <label>Sort by date</label>
+                    <select
+                        value={sortOrder}
+                        onChange={e => setSortOrder(e.target.value)}
+                    >
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                    </select>
+                </div>
 
+                <div className="filter-group">
+                    <label>Booking status</label>
+                    <select
+                        value={statusFilter}
+                        onChange={e => setStatusFilter(e.target.value)}
+                    >
+                        <option value="ALL">All statuses</option>
+                        <option value="CONFIRMED">Confirmed</option>
+                        <option value="CHECKEDIN">Checked In</option>
+                        <option value="CANCELLED">Cancelled</option>
+                        <option value="COMPLETED">Completed</option>
+                    </select>
+                </div>
+            </div>
             {filteredBookings.length === 0 ? (
                 <div className="no-bookings">
                     <i className="pi pi-calendar-times"></i>
@@ -72,7 +117,7 @@ function Bookings() {
                                     <button
                                         className="edit-booking"
                                         title="Edit booking"
-                                        onClick={() => {}}
+                                        onClick={() => { }}
                                     >
                                         <i className="pi pi-pencil"></i>
                                     </button>

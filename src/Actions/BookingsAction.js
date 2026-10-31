@@ -1,13 +1,14 @@
 import { setBookings } from "../Reducers/BookingsReducer"
 import { showPopup } from "../Reducers/PopupReducer"
+import { clearRoomFilters } from "../Reducers/HomeReducer"
 import { apiCall } from "./api"
 
 
 
 export const bookRoom = (data) => async (dispatch) => {
     const onSuccess = (data) => {
-        console.log(data)
         dispatch(showPopup({type:"success",message:"Booking confirmed"}));
+        dispatch(clearRoomFilters());
     }
     const onFailure = () => {
         dispatch(showPopup({type:"error",message:"Something went wrong, please check logs!"}));

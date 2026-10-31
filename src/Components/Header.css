@@ -1,56 +1,209 @@
-.header-tabs{
-    display: flex;
-    flex-basis: 50%;
-    gap: 50px;
-    justify-content:center;  
-    flex-wrap: nowrap;
-    white-space:nowrap;
-}
-
-.titles{
-    padding: 5px;
-    cursor: pointer;
-    color: white;
-    display: flex;
-    gap: 5px;
-}
-
-.title{
-    text-decoration: inherit;
-    font: inherit;
-    color: inherit;
-}
-
-.header{
-    display: flex;
-    padding: 10px;
-    position: fixed;
-    top: 0;
+.header {
     width: 100%;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.7);
-
-}
-.hotelName{
-    font-weight: 600;
-    flex-basis: 30%;
-    font-size:larger;
-    color: white;
-}
-
-.user{
+    min-height: 75px;
+    padding: 0 5%;
+    box-sizing: border-box;
     display: flex;
-    gap: 8px;
-    position: absolute;
-    align-self: center;
-    right: 20px;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: "Poppins", sans-serif;
 }
 
-.user > button{
-    border-radius: 8px;
-    background-color: goldenrod;
-    padding: 6px 8px;
-    border: none;
-    color: white;
+/* Hotel name */
+.hotelName {
+    color: #26372d;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Navigation tabs */
+.header-tabs {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.titles {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.titles:hover {
+    color: #a27b45;
+}
+
+.titles i {
+    font-size: 16px;
+}
+
+.title {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.title:hover {
+    color: #a27b45;
+}
+
+/* User icon and dropdown */
+.user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.user-icon-btn {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #deded8;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #26372d;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.user-icon-btn:hover {
+    background: #26372d;
+    color: #ffffff;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 1001;
+    width: 220px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.dropdown-user-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 10px;
+    color: #26372d;
+    font-size: 14px;
     font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.dropdown-user-name i {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.dropdown-divider {
+    height: 1px;
+    margin: 5px 0;
+    background: #eeeeee;
+}
+
+.logout-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #c0392b;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #fff1ef;
+}
+
+.logout-btn i {
+    font-size: 16px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .header {
+        padding: 0 3%;
+    }
+
+    .hotelName {
+        font-size: 18px;
+    }
+
+    .header-tabs {
+        gap: 18px;
+    }
+
+    .titles {
+        gap: 6px;
+        font-size: 13px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .header {
+        min-height: 65px;
+        padding: 10px 4%;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hotelName {
+        font-size: 17px;
+    }
+
+    .header-tabs {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 8px 0 4px;
+    }
+
+    .titles {
+        gap: 5px;
+        font-size: 12px;
+    }
+
+    .titles i {
+        font-size: 14px;
+    }
+
+    .user-icon-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .user-dropdown {
+        width: 200px;
+    }
 }

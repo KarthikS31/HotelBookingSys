@@ -1,44 +1,51 @@
-import { useEffect } from 'react';
-import './App.css'
-import Header from './Components/Header'
-import Bookings from './Views/Bookings';
-import Home from './Views/Home'
-import Rooms from './Views/Rooms';
-import { fetchAllRooms } from './Actions/RoomsAction';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBookingByUserId } from './Actions/BookingsAction';
-import Popup from './Components/Popup';
-import { HashRouter, Route, Routes } from 'react-router-dom';
 
+import { useEffect } from "react";
+import "./App.css";
+
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import Header from "./Components/Header";
+import Popup from "./Components/Popup";
+
+import Home from "./Views/Home";
+import Rooms from "./Views/Rooms";
+import Bookings from "./Views/Bookings";
+import Login from "./Views/Login";
 
 
 function App() {
-  const dispatch = useDispatch();
 
-  //initial api call 
-  useEffect(() => {
-    dispatch(fetchAllRooms());
-    dispatch(getBookingByUserId({ userId: 1 }));
-  }, [])
-
-
-
+  const token = useSelector((state) => state.auth.token);
 
   const scrollToView = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  if (!token) {
+    return <Login />;
   }
 
-  return (<div className="main-containter">
+  return (
+    <div className="main-containter">
+      <Header scrollToView={scrollToView} />
 
-    <Header scrollToView={scrollToView} />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Home />
+            <Rooms />
+          </>
+        }
+        />
 
-    <Routes>
-      <Route path="/" element={<><Home /> <Rooms /></>} />
-      <Route path="/bookings" element={<Bookings />} />
-    </Routes>
-    
-    <Popup />
-  </div>)
+        <Route path="/bookings" element={<Bookings />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+
+      <Popup />
+    </div>
+  );
 }
 
-export default App
+export default App;

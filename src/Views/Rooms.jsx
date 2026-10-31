@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookRoom } from "../Actions/BookingsAction";
 
 function Rooms() {
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
     const roomsData = useSelector((state) => state.rooms?.data);
     const filters = useSelector((state) => state.home?.filters);
+    const user = useSelector((state) => state.auth.user);
+    const userId = user?.id;
 
     const filteredRooms = useMemo(() => {
 
-        if(!filters.roomType) return roomsData;
+        if (!filters.roomType) return roomsData;
 
         return roomsData.filter(
             (room) => room.propType?.type === filters.roomType
@@ -19,14 +21,14 @@ function Rooms() {
 
     return (<div className="container" id="rooms" >
         {filteredRooms.map((e) => {
-            return SingleRoomCard(e,filters,dispatch)
+            return SingleRoomCard(e, filters, dispatch, userId)
         })}
     </div>)
 }
 
 
 
-function SingleRoomCard(data, filters, dispatch) {
+function SingleRoomCard(data, filters, dispatch, userId) {
 
     return (
         <div key={data.id} className="roomCard">
@@ -50,7 +52,7 @@ function SingleRoomCard(data, filters, dispatch) {
                 <button
                     className="bookButton"
                     disabled={!filters.roomType}
-                    onClick={() => { onClickBook(data, filters, dispatch) }}
+                    onClick={() => { onClickBook(data, filters, dispatch, userId) }}
                 >
                     Book Now
                 </button>
@@ -60,22 +62,59 @@ function SingleRoomCard(data, filters, dispatch) {
 }
 
 
-function onClickBook(property, filters, dispatch) {
-    let data = {}
+function onClickBook(property, filters, dispatch, userId) {
 
-    const days = (new Date(filters.checkout) - new Date(filters.checkin)) / (1000 * 60 * 60 * 24)
+    const showError = (message) => {
+        dispatch(showPopup({ type: "error", message }));
+    };
 
-    data = {
-        "user": { "id": 1 }, //hardcoded
-        "property": { "id": property.id },
-        "guests": Number(filters.guests),
-        "check_in": `${filters.checkin}T14:00:00`,
-        "check_out": `${filters.checkout}T11:00:00`,
-        "totalAmount": days * property.price,
-        "bookingStatus": "CONFIRMED"
+    if (!userId) {
+        return showError("Please login to book a room.");
     }
 
-    dispatch(bookRoom(data))
+    if (!property?.id) {
+        return showError("Invalid room selected.");
+    }
+
+    if (!filters.checkin || !filters.checkout) {
+        return showError("Please select check-in and check-out dates.");
+    }
+
+    const checkin = new Date(filters.checkin);
+    const checkout = new Date(filters.checkout);
+
+    if (isNaN(checkin.getTime()) || isNaN(checkout.getTime())) {
+        return showError("Please select valid dates.");
+    }
+
+    if (checkout <= checkin) {
+        return showError("Check-out date must be after check-in date.");
+    }
+
+    const guests = Number(filters.guests);
+
+    if (!Number.isInteger(guests) || guests <= 0) {
+        return showError("Please enter a valid guest count.");
+    }
+
+    if (!property.price || Number(property.price) <= 0) {
+        return showError("Invalid room price.");
+    }
+
+    const days = (checkout - checkin) / (1000 * 60 * 60 * 24);
+
+    const data = {
+        users: { id: userId },
+        property: { id: property.id },
+        guests,
+        check_in: `${filters.checkin}T14:00:00`,
+        check_out: `${filters.checkout}T11:00:00`,
+        totalAmount: days * Number(property.price),
+        bookingStatus: "CONFIRMED"
+    };
+
+    dispatch(bookRoom(data));
+
 }
 
 export default Rooms;

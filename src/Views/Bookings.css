@@ -35,6 +35,50 @@
     font-size: 13px;
     white-space: nowrap;
 }
+.booking-filters {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e8e8e8;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-group label {
+    font-size: 12px;
+    color: #666;
+}
+
+.filter-group select {
+    min-width: 150px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .booking-filters {
+        justify-content: stretch;
+        flex-wrap: wrap;
+    }
+
+    .filter-group {
+        flex: 1;
+        min-width: 130px;
+    }
+}
 
 .bookings-list {
     display: flex;

@@ -1,0 +1,130 @@
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #f5f4f0;
+    font-family: "Poppins", sans-serif;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 38px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.login-brand {
+    margin-bottom: 24px;
+    color: #a27b45;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.login-card h1 {
+    margin: 0;
+    color: #20251f;
+    font-size: 29px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.login-subtitle {
+    margin: 10px 0 26px;
+    color: #777;
+    font-size: 13px;
+    text-align: center;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.form-group input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #deded8;
+    border-radius: 9px;
+    outline: none;
+    background: #fff;
+    color: #222;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #a27b45;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 9px;
+    background: #26372d;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #354b3c;
+}
+
+.submit-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.auth-error {
+    margin: 0 0 14px;
+    color: #c0392b;
+    font-size: 13px;
+}
+
+.auth-switch {
+    margin: 24px 0 0;
+    color: #777;
+    font-size: 13px;
+    text-align: center;
+}
+
+.auth-switch button {
+    border: none;
+    background: none;
+    color: #94703e;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 28px 22px;
+    }
+
+    .login-card h1 {
+        font-size: 25px;
+    }
+}
