@@ -1,15 +1,20 @@
+
 Hotel Booking System
 A full-stack hotel booking application where users can browse available rooms, check room details and prices, make reservations, and manage their bookings.
 Screenshots
 Login
+<img width="1916" height="930" alt="loginscreen" src="https://github.com/user-attachments/assets/6fecdac7-fe18-40de-8175-0000afb4930c" />
 
 Home and room search
+<img width="1917" height="917" alt="HomePage" src="https://github.com/user-attachments/assets/74f798c7-6c97-4ae8-90bf-e5822420aaa9" />
 
 Available rooms
 
-Booking confirmation
+<img width="1917" height="862" alt="bookingsPage" src="https://github.com/user-attachments/assets/8340b0c5-65d9-44dc-a331-05970200d23b" />
 
 My bookings
+<img width="1917" height="921" alt="availableRooms" src="https://github.com/user-attachments/assets/a7ef9f99-6957-42f1-ba84-314c10426141" />
+
 
 Features
 - User registration and login
